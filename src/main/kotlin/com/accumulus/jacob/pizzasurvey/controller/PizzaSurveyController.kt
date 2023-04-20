@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 
+const val favoriteTopping = "black olives"
+
 @RestController
 class PizzaSurveyController {
 
@@ -30,5 +32,10 @@ class PizzaSurveyController {
     fun surveyResults(): ResponseEntity<SurveyResultsResponse> {
         val scoreboard = surveyService.scoreboard()
         return ResponseEntity.ok(SurveyResultsResponse(scoreboard.results()))
+    }
+
+    @GetMapping("/best-topping")
+    fun bestTopping(): ResponseEntity<String> {
+        return ResponseEntity.ok("My favorite topping is $favoriteTopping.")
     }
 }
