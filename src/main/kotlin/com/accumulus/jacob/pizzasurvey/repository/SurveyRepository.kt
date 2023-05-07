@@ -15,7 +15,7 @@ class SurveyRepository {
 
     fun findAll(): List<Survey> {
         return transaction {
-            Surveys.selectAll().map { Survey(email=it[Surveys.email], toppings=it[Surveys.toppings].toString().split(",")) }
+            Surveys.selectAll().map { Survey(id = it[Surveys.id], email=it[Surveys.email], toppings=it[Surveys.toppings].toString().split(",").toMutableList()) }
         }
     }
 

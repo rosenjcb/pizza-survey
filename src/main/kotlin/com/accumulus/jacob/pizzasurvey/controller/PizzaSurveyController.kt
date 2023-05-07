@@ -24,6 +24,7 @@ class PizzaSurveyController {
             surveyService.submitSurvey(survey)
             return ResponseEntity.ok("Thanks for completing our survey " + survey.email)
         } catch (e: Exception) {
+            print(e.toString());
             return ResponseEntity.internalServerError().body("Couldn't do that for some reason. Please try again.")
         }
     }
@@ -34,7 +35,7 @@ class PizzaSurveyController {
         return ResponseEntity.ok(SurveyResultsResponse(scoreboard.results()))
     }
 
-    @GetMapping("/best-topping")
+    @GetMapping("/favorite-topping")
     fun bestTopping(): ResponseEntity<String> {
         return ResponseEntity.ok("My favorite topping is $favoriteTopping.")
     }
